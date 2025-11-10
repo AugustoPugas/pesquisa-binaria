@@ -4,24 +4,25 @@ public class pesquisaBinaria {
         int alto = array.length - 1;
 
         while (baixo <= alto) {
-            int meio = baixo + (alto - baixo) / 2;
+            int meio = (baixo + alto) / 2;
+            int chute = array[meio];
 
-            if (array[meio] == valorProcurado) {
+            if (chute == valorProcurado) {
                 return meio; // Valor encontrado
             }
 
-            if (array[meio] < valorProcurado) {
-                baixo = meio + 1; // Procurar na metade superior
-            } else {
+            if (chute > valorProcurado) {
                 alto = meio - 1; // Procurar na metade inferior
+            } else {
+                baixo = meio + 1; // Procurar na metade superior
             }
         }
         return -1; // Valor não encontrado
     }
 
     public static void main(String[] args) {
-        int[] minha_lista = new int[]{1, 2, 3, 4, 5};
-        int resultado = pesquisaBinaria(minha_lista, 5);
+        int[] minha_lista = new int[]{1, 3, 5, 7, 9};
+        int resultado = pesquisaBinaria(minha_lista, 3);
         System.out.println("Resultado: " + resultado);
     }
 }
